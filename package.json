@@ -1,0 +1,14 @@
+{
+  "name": "async-control-flow",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "mocha */test.js"
+  },
+  "author": "me@jongleberry.com",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^1.4.2",
+    "mocha": "^2.3.3"
+  }
+}
