@@ -29,7 +29,7 @@ module.exports = function (password, salt, callback) {
 
     callback(null, {
       salt: salt,
-      hash: hash
+      hash: hash.toString('base64')
     })
   })
 }
