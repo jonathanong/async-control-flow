@@ -7,7 +7,8 @@ First, read the slides: https://jonathanong.github.com/async-control-flow/
 
 ## Installation
 
-You need `node.js` installed!
+You need `node.js` installed! I recommend you install `node v4` or higher!
+You need at least `node v0.12` for `Promise`s.
 
 Clone this repo:
 
