@@ -24,7 +24,7 @@ module.exports = function (password, salt, callback) {
     })
   }
 
-  crypto.pbkdf2Sync(password, salt, 4096, 512, 'sha256', function (err, hash) {
+  crypto.pbkdf2(password, salt, 4096, 512, 'sha256', function (err, hash) {
     // handle your error
 
     callback(null, {
