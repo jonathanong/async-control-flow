@@ -1,6 +1,5 @@
 'use strict'
 
-var parallel = require('async').parallel
 var fs = require('fs')
 
 /**
@@ -10,12 +9,24 @@ var fs = require('fs')
  */
 
 module.exports = function (filenames, callback) {
-  parallel(filenames.map(function (filename) {
-    return function (done) {
-      fs.readFile(filename, 'utf8', done)
-    }
-  }), function (err, strings) {
-    if (err) return callback(err)
-    callback(null, strings.join('\n'))
+  var promise = Promise.all(filenames.map(function (filename) {
+    return new Promise(function (resolve, reject) {
+      fs.readFile(filename, 'utf8', function (err, string) {
+        if (err) return reject(err)
+        resolve(string)
+      })
+    })
+  })).then(function (strings) {
+    return strings.join('\n')
   })
+
+  if (typeof callback === 'function') {
+    promise.then(function (val) {
+      callback(null, val)
+    }, function (err) {
+      callback(err)
+    })
+  }
+
+  return promise
 }

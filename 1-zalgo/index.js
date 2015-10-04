@@ -7,7 +7,8 @@
  */
 
 module.exports = function (val, callback) {
-  if (typeof val !== 'number') throw new TypeError('`val` must be a number!')
-  if (val === 0) return callback(null, 0)
-  callback(null, 5 * val)
+  setImmediate(function () {
+    if (typeof val !== 'number') return callback(new TypeError('`val` must be a number!'))
+    callback(null, 5 * val)
+  })
 }
