@@ -23,7 +23,7 @@ module.exports = function (password, salt, callback) {
     })
   })).then(function (salt) {
     return new Promise(function (resolve, reject) {
-      crypto.pbkdf2(password, salt, 4096, 512, 'sha1', function (err, hash) {
+      crypto.pbkdf2(password, salt, 4096, 512, 'sha256', function (err, hash) {
         if (err) return reject(err)
 
         resolve({
